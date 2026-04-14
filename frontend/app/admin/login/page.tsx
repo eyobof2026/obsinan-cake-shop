@@ -8,7 +8,8 @@ export default function AdminLogin() {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleLogin = async (e) => {
+  // Fixed: Added : any here
+  const handleLogin = async (e: any) => {
     e.preventDefault();
     setError("");
 
@@ -35,7 +36,7 @@ export default function AdminLogin() {
     <main className="h-screen flex items-center justify-center bg-black relative overflow-hidden font-sans">
       <div className="absolute w-96 h-96 bg-cyan-500/10 rounded-full blur-[100px] -top-20 -left-20"></div>
       
-      <form onSubmit={handleLogin} className="z-10 w-full max-w-sm p-10 bg-gray-900/40 border border-white/5 backdrop-blur-2xl rounded-[2.5rem] shadow-2xl">
+      <form onSubmit={handleLogin} className="z-10 w-full max-w-sm p-10 bg-gray-900/40 border border-white/5 backdrop-blur-2xl rounded-[2.5rem] shadow-2xl text-white">
         <h1 className="text-3xl font-black text-white text-center mb-2 tracking-tighter italic">OBSINAN ADMIN</h1>
         <p className="text-cyan-500 text-[10px] text-center uppercase tracking-[0.4em] mb-10">Security Terminal</p>
 
