@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 export default function PriceManager() {
-  const [cakes, setCakes] = useState([]);
+  const [cakes, setCakes] = useState<any[]>([]);
   const [newName, setNewName] = useState("");
   const [newPrice, setNewPrice] = useState("");
   const [newImage, setNewImage] = useState(""); 
@@ -114,7 +114,7 @@ export default function PriceManager() {
 
       {/* List Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {cakes.map((cake) => (
+        {cakes.map((cake : any) => (
           <div key={cake._id} className="bg-gray-900 p-4 rounded-[1.5rem] flex items-center gap-4 border border-white/5 hover:border-cyan-500/30 transition-all">
             <img src={cake.image_data} className="w-20 h-20 object-cover rounded-xl border-2 border-cyan-500/20" alt="cake" />
             <div className="flex-1">
