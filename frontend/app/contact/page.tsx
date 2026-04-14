@@ -17,7 +17,7 @@ export default function ContactPage() {
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:8000/messages", {
+      const res = await fetch("https://obsinan-api.vercel.app/messages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, phone, message })

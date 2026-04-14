@@ -13,7 +13,7 @@ export default function AdminLogin() {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:8000/admin/login", {
+      const res = await fetch("https://obsinan-api.vercel.app/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password })

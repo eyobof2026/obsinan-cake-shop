@@ -13,8 +13,8 @@ export default function PendingOrders() {
     setLoading(true);
     try {
       const [orderRes, cakeRes] = await Promise.all([
-        fetch("http://localhost:8000/admin/orders"),
-        fetch("http://localhost:8000/cake-types")
+        fetch("https://obsinan-api.vercel.app/admin/orders"),
+        fetch("https://obsinan-api.vercel.app/cake-types")
       ]);
       
       const orderData = await orderRes.json();
@@ -35,7 +35,7 @@ export default function PendingOrders() {
   // 2. Update Order Status (Complete or Cancel)
   const handleStatusChange = async (ref, newStatus) => {
     if (confirm(`Are you sure you want to mark this as ${newStatus}?`)) {
-      await fetch(`http://localhost:8000/admin/orders/${ref}?status=${newStatus}`, {
+      await fetch(`https://obsinan-api.vercel.app/admin/orders/${ref}?status=${newStatus}`, {
         method: "PUT"
       });
       loadData(); // Refresh list

@@ -12,7 +12,7 @@ export default function CheckOrder() {
     setLoading(true);
     try {
       // We ask the backend: "What is the status of this order?"
-      const response = await fetch(`http://localhost:8000/orders/${refNum}`);
+      const response = await fetch(`https://obsinan-api.vercel.app/orders/${refNum}`);
       const data = await response.json();
 
       if (response.ok) {

@@ -12,7 +12,7 @@ export default function AdminSettings() {
     if (pass !== confirmPass) return setStatus("Passwords do not match!");
 
     try {
-      const res = await fetch("http://localhost:8000/admin/update-security", {
+      const res = await fetch("https://obsinan-api.vercel.app/admin/update-security", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: user, password: pass })

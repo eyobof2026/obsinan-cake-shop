@@ -7,7 +7,7 @@ export default function AdminMessages() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res = await fetch("http://localhost:8000/admin/messages");
+        const res = await fetch("https://obsinan-api.vercel.app/admin/messages");
         const data = await res.json();
         setMessages(data);
       } catch (e) { console.error("Error fetching messages"); }

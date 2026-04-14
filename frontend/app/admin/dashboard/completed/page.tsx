@@ -6,7 +6,7 @@ export default function CompletedOrders() {
 
   const loadOrders = async () => {
     try {
-      const response = await fetch("http://localhost:8000/admin/orders");
+      const response = await fetch("https://obsinan-api.vercel.app/admin/orders");
       const data = await response.json();
       // Removed the ": any" to fix your error
       const finished = data.filter((o) => o.status === "Completed");

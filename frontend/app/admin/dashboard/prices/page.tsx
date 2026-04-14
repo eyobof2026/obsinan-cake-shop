@@ -13,7 +13,7 @@ export default function PriceManager() {
 
   const loadCakes = async () => {
     try {
-      const res = await fetch("http://localhost:8000/cake-types");
+      const res = await fetch("https://obsinan-api.vercel.app/cake-types");
       const data = await res.json();
       setCakes(data);
     } catch (e) { console.error("Could not load cakes"); }
@@ -62,8 +62,8 @@ export default function PriceManager() {
       };
 
       const url = editingId 
-        ? `http://localhost:8000/cake-types/${editingId}` 
-        : "http://localhost:8000/cake-types";
+        ? `https://obsinan-api.vercel.app/cake-types/${editingId}` 
+        : "https://obsinan-api.vercel.app/cake-types";
       
       const method = editingId ? "PUT" : "POST";
 
@@ -85,7 +85,7 @@ export default function PriceManager() {
 
   const deleteCake = async (id) => {
     if(confirm("Are you sure you want to delete this cake?")) {
-      await fetch(`http://localhost:8000/cake-types/${id}`, { method: "DELETE" });
+      await fetch(`https://obsinan-api.vercel.app/cake-types/${id}`, { method: "DELETE" });
       loadCakes();
     }
   };

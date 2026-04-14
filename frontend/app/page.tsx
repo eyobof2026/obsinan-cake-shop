@@ -58,7 +58,7 @@ export default function HomePage() {
 
     async function fetchCakes() {
       try {
-        const response = await fetch("http://localhost:8000/cake-types");
+        const response = await fetch("https://obsinan-api.vercel.app/cake-types");
         if (response.ok) {
           const data = await response.json();
           setDbCakes(data);
@@ -118,7 +118,7 @@ export default function HomePage() {
         status: "Pending"
       };
 
-      const response = await fetch("http://localhost:8000/orders", {
+      const response = await fetch("https://obsinan-api.vercel.app/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderData),
