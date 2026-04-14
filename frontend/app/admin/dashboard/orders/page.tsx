@@ -66,7 +66,7 @@ export default function PendingOrders() {
             className="bg-black text-cyan-400 text-xs p-2 rounded-xl outline-none border border-cyan-900/50"
           >
             <option value="All">All Types</option>
-            {cakeTypes.map(c => <option key={c._id} value={c.price}>{c.name}</option>)}
+            {cakeTypes.map((c : any ) => <option key={c._id} value={c.price}>{c.name}</option>)}
           </select>
         </div>
       </div>
