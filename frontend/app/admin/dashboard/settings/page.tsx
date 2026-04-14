@@ -7,7 +7,8 @@ export default function AdminSettings() {
   const [confirmPass, setConfirmPass] = useState("");
   const [status, setStatus] = useState("");
 
-  const handleUpdate = async (e) => {
+  // Fixed: Added : any here
+  const handleUpdate = async (e: any) => {
     e.preventDefault();
     if (pass !== confirmPass) return setStatus("Passwords do not match!");
 
@@ -29,7 +30,7 @@ export default function AdminSettings() {
     <div className="max-w-md mx-auto">
       <h1 className="text-3xl font-black mb-8 text-white italic">SECURITY SETTINGS</h1>
       
-      <div className="bg-gray-900 p-8 rounded-[2.5rem] border border-red-900/20 shadow-2xl">
+      <div className="bg-gray-900 p-8 rounded-[2.5rem] border border-red-900/20 shadow-2xl text-white">
         <h2 className="text-red-500 text-xs font-bold uppercase mb-6 tracking-widest flex items-center gap-2">
           <span className="w-2 h-2 bg-red-500 rounded-full animate-ping"></span>
           Modify Access Credentials
