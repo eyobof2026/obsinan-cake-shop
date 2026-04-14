@@ -52,10 +52,12 @@ export default function HomePage() {
   const t = translations[lang as keyof typeof translations];
 
   useEffect(() => {
+    // Set minimum date
     const today = new Date();
     today.setDate(today.getDate() + 1); 
     setMinDate(today.toISOString().split('T')[0]);
 
+    // Fetch cake types from backend
     async function fetchCakes() {
       try {
         const response = await fetch("https://obsinan-api.vercel.app/cake-types");
@@ -136,70 +138,70 @@ export default function HomePage() {
   };
 
   return (
-    <main className="min-h-screen bg-black text-white p-4 md:p-10 font-sans">
+    <main className="min-h-screen bg-black text-white p-4 md:p-10 font-sans pb-24 md:pb-10">
       
       <div className="flex justify-end gap-2 mb-6">
-        <button onClick={() => setLang('en')} className={`px-3 py-1 rounded ${lang === 'en' ? 'bg-cyan-500 text-black' : 'bg-gray-800'}`}>EN</button>
-        <button onClick={() => setLang('am')} className={`px-3 py-1 rounded ${lang === 'am' ? 'bg-cyan-500 text-black' : 'bg-gray-800'}`}>አማ</button>
-        <button onClick={() => setLang('or')} className={`px-3 py-1 rounded ${lang === 'or' ? 'bg-cyan-500 text-black' : 'bg-gray-800'}`}>ORM</button>
+        <button onClick={() => setLang('en')} className={`px-3 py-1 rounded text-xs ${lang === 'en' ? 'bg-cyan-500 text-black' : 'bg-gray-800'}`}>EN</button>
+        <button onClick={() => setLang('am')} className={`px-3 py-1 rounded text-xs ${lang === 'am' ? 'bg-cyan-500 text-black' : 'bg-gray-800'}`}>አማ</button>
+        <button onClick={() => setLang('or')} className={`px-3 py-1 rounded text-xs ${lang === 'or' ? 'bg-cyan-500 text-black' : 'bg-gray-800'}`}>ORM</button>
       </div>
 
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl md:text-6xl font-black text-center mb-4 tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">
+        <h1 className="text-3xl md:text-6xl font-black text-center mb-2 tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">
           {t.title}
         </h1>
-        <p className="text-center text-gray-400 mb-10 uppercase tracking-widest">{t.subtitle}</p>
+        <p className="text-center text-gray-500 mb-8 uppercase tracking-[0.2em] text-[10px] md:text-sm">{t.subtitle}</p>
 
         {!refNumber ? (
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-900/50 p-6 md:p-10 rounded-3xl border border-white/10 backdrop-blur-xl shadow-2xl">
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 bg-gray-900/50 p-6 md:p-10 rounded-[2rem] border border-white/10 backdrop-blur-xl shadow-2xl">
             
             <div className="flex flex-col">
-              <label className="text-cyan-400 text-sm mb-2 ml-1">{t.fullName}</label>
+              <label className="text-cyan-400 text-[10px] uppercase font-bold mb-1 ml-1">{t.fullName}</label>
               <input 
                 required type="text" placeholder="..." 
                 value={fullName} onChange={(e) => setFullName(e.target.value)}
-                className="p-3 bg-black/50 border border-gray-700 rounded-xl focus:border-cyan-500 outline-none transition-all" 
+                className="p-3 bg-black/50 border border-gray-700 rounded-xl focus:border-cyan-500 outline-none text-sm" 
               />
             </div>
 
             <div className="flex flex-col">
-              <label className="text-cyan-400 text-sm mb-2 ml-1">{t.phone}</label>
+              <label className="text-cyan-400 text-[10px] uppercase font-bold mb-1 ml-1">{t.phone}</label>
               <input 
                 required type="tel" placeholder="09..." 
                 value={phone} onChange={(e) => setPhone(e.target.value)}
-                className="p-3 bg-black/50 border border-gray-700 rounded-xl focus:border-cyan-500 outline-none transition-all" 
+                className="p-3 bg-black/50 border border-gray-700 rounded-xl focus:border-cyan-500 outline-none text-sm" 
               />
             </div>
 
             <div className="md:col-span-2 flex flex-col">
-              <label className="text-cyan-400 text-sm mb-2 ml-1">{t.cakeText}</label>
+              <label className="text-cyan-400 text-[10px] uppercase font-bold mb-1 ml-1">{t.cakeText}</label>
               <input 
                 required type="text" placeholder="..." 
                 value={cakeText} onChange={(e) => setCakeText(e.target.value)}
-                className="p-3 bg-black/50 border border-gray-700 rounded-xl focus:border-cyan-500 outline-none transition-all" 
+                className="p-3 bg-black/50 border border-gray-700 rounded-xl focus:border-cyan-500 outline-none text-sm" 
               />
             </div>
 
             <div className="flex flex-col">
-              <label className="text-cyan-400 text-sm mb-2 ml-1">{t.deliveryDate}</label>
+              <label className="text-cyan-400 text-[10px] uppercase font-bold mb-1 ml-1">{t.deliveryDate}</label>
               <input 
                 required type="date" min={minDate} 
                 value={deliveryDate} onChange={(e) => setDeliveryDate(e.target.value)}
-                className="p-3 bg-black/50 border border-gray-700 rounded-xl focus:border-cyan-500 outline-none transition-all text-white" 
+                className="p-3 bg-black/50 border border-gray-700 rounded-xl focus:border-cyan-500 outline-none text-white text-sm" 
               />
             </div>
 
             <div className="flex flex-col">
-              <label className="text-cyan-400 text-sm mb-2 ml-1">{t.deliveryTime}</label>
+              <label className="text-cyan-400 text-[10px] uppercase font-bold mb-1 ml-1">{t.deliveryTime}</label>
               <input 
                 required type="time" min="11:00" 
                 value={deliveryTime} onChange={(e) => setDeliveryTime(e.target.value)}
-                className="p-3 bg-black/50 border border-gray-700 rounded-xl focus:border-cyan-500 outline-none transition-all text-white" 
+                className="p-3 bg-black/50 border border-gray-700 rounded-xl focus:border-cyan-500 outline-none text-white text-sm" 
               />
             </div>
 
             <div className="md:col-span-2 flex flex-col">
-              <label className="text-cyan-400 text-sm mb-2 ml-1">{t.selectPrice}</label>
+              <label className="text-cyan-400 text-[10px] uppercase font-bold mb-1 ml-1">{t.selectPrice}</label>
               <select 
                 required 
                 value={selectedCakeId}
@@ -208,7 +210,7 @@ export default function HomePage() {
                   setSelectedCakeId(e.target.value);
                   setPrice(cake ? cake.price.toString() : "");
                 }}
-                className="p-3 bg-black border border-gray-700 rounded-xl focus:border-cyan-500 outline-none"
+                className="p-3 bg-black border border-gray-700 rounded-xl focus:border-cyan-500 outline-none text-sm"
               >
                 <option value="">{t.selectPrice}</option>
                 {dbCakes.map((cake) => (
@@ -220,23 +222,23 @@ export default function HomePage() {
             </div>
 
             {price && (
-              <div className="md:col-span-2 bg-cyan-900/20 border border-cyan-500/50 p-4 rounded-2xl flex flex-col items-center">
+              <div className="md:col-span-2 bg-cyan-900/20 border border-cyan-500/50 p-4 rounded-2xl flex flex-col items-center animate-in zoom-in duration-300">
                 <img 
-                  src={dbCakes.find(c => c._id === selectedCakeId)?.image_data || cakeDetails[price]?.img || "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500"} 
+                  src={dbCakes.find(c => c._id === selectedCakeId)?.image_data || cakeDetails[price]?.img} 
                   alt="Preview" 
-                  className="w-48 h-48 object-cover rounded-full border-4 border-cyan-500 mb-4 shadow-[0_0_20px_rgba(6,182,212,0.5)]" 
+                  className="w-32 h-32 md:w-48 md:h-48 object-cover rounded-full border-4 border-cyan-500 mb-4 shadow-[0_0_20px_rgba(6,182,212,0.5)]" 
                 />
-                <p className="text-xl font-bold text-cyan-300 italic">{t.downPayment}: {Number(price) / 2} {t.birr} (50%)</p>
+                <p className="text-sm md:text-xl font-bold text-cyan-300 italic">{t.downPayment}: {Number(price) / 2} {t.birr} (50%)</p>
               </div>
             )}
 
             <div className="md:col-span-2 flex flex-col">
-              <label className="text-cyan-400 text-sm mb-2 ml-1">{t.paymentMethod}</label>
+              <label className="text-cyan-400 text-[10px] uppercase font-bold mb-1 ml-1">{t.paymentMethod}</label>
               <select 
                 required 
                 value={payMethod}
                 onChange={(e) => setPayMethod(e.target.value)}
-                className="p-3 bg-black border border-gray-700 rounded-xl outline-none"
+                className="p-3 bg-black border border-gray-700 rounded-xl outline-none text-sm"
               >
                 <option value="">{t.selectBank}</option>
                 <option value="telebirr">Telebirr</option>
@@ -245,34 +247,34 @@ export default function HomePage() {
                 <option value="awash">Awash</option>
               </select>
               {payMethod && (
-                <p className="mt-2 text-yellow-400 font-mono text-sm bg-yellow-400/10 p-2 rounded border border-yellow-400/30">
+                <p className="mt-2 text-yellow-400 font-mono text-[10px] bg-yellow-400/10 p-2 rounded border border-yellow-400/30">
                   {bankAccounts[payMethod]}
                 </p>
               )}
             </div>
 
             <div className="md:col-span-2 flex flex-col">
-              <label className="text-cyan-400 text-sm mb-2 ml-1">{t.uploadReceipt}</label>
+              <label className="text-cyan-400 text-[10px] uppercase font-bold mb-1 ml-1">{t.uploadReceipt}</label>
               <input 
                 required 
                 type="file" 
                 accept="image/*,.pdf" 
                 onChange={handleFileChange}
-                className="text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-cyan-600 file:text-white hover:file:bg-cyan-500 cursor-pointer" 
+                className="text-[10px] text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:bg-cyan-600 file:text-white" 
               />
             </div>
 
-            <button type="submit" className="md:col-span-2 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-400 hover:to-blue-400 text-white font-black rounded-xl shadow-lg shadow-cyan-500/20 transform transition-active active:scale-95 uppercase tracking-widest">
+            <button type="submit" className="md:col-span-2 py-4 bg-cyan-600 text-white font-black rounded-xl uppercase tracking-widest text-sm hover:bg-cyan-500 active:scale-95 transition-all">
               {t.completeBtn}
             </button>
 
           </form>
         ) : (
-          <div className="bg-gray-900 border-2 border-cyan-500 p-10 rounded-3xl text-center">
-            <h2 className="text-3xl font-bold text-cyan-400 mb-4">{t.orderPlaced}</h2>
-            <p className="text-gray-400 mb-2">{t.thankYou}</p>
-            <p className="text-sm text-gray-500 mb-6">{t.refText}</p>
-            <div className="text-5xl font-mono font-black tracking-widest text-white bg-black p-6 rounded-xl border border-cyan-500 mb-8">
+          /* Success Screen */
+          <div className="bg-gray-900 border-2 border-cyan-500 p-8 md:p-10 rounded-[2.5rem] text-center shadow-[0_0_50px_rgba(6,182,212,0.2)]">
+            <h2 className="text-2xl md:text-3xl font-bold text-cyan-400 mb-4">{t.orderPlaced}</h2>
+            <p className="text-xs md:text-sm text-gray-500 mb-6">{t.refText}</p>
+            <div className="text-2xl md:text-5xl font-mono font-black tracking-widest text-white bg-black p-6 rounded-2xl border border-cyan-500 mb-8 break-words">
               {refNumber}
             </div>
             <button 
@@ -286,7 +288,7 @@ export default function HomePage() {
                 setReceiptData("");
                 setReceiptFile(null);
               }}
-              className="text-cyan-400 underline decoration-cyan-500 underline-offset-4"
+              className="text-cyan-400 underline decoration-cyan-500 underline-offset-4 text-sm"
             >
               {t.anotherOrder}
             </button>
