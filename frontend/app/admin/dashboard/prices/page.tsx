@@ -6,10 +6,10 @@ export default function PriceManager() {
   const [newName, setNewName] = useState("");
   const [newPrice, setNewPrice] = useState("");
   const [newImage, setNewImage] = useState(""); 
-  const [editingId, setEditingId] = useState(null);
+  const [editingId, setEditingId] = useState<any>(null);
   
   // New state to hold the actual file for Cloudinary
-  const [imageFile, setImageFile] = useState(null);
+  const [imageFile, setImageFile] = useState<any>(null);
 
   const loadCakes = async () => {
     try {
@@ -21,12 +21,13 @@ export default function PriceManager() {
 
   useEffect(() => { loadCakes(); }, []);
 
-  const handleFileChange = (e) => {
+  // Fixed: Added : any
+  const handleFileChange = (e: any) => {
     const file = e.target.files[0];
     if (file) {
       setImageFile(file); // Save file for Cloudinary
       const reader = new FileReader();
-      reader.onloadend = () => setNewImage(reader.result);
+      reader.onloadend = () => setNewImage(reader.result as string);
       reader.readAsDataURL(file);
     }
   };
@@ -83,7 +84,8 @@ export default function PriceManager() {
     }
   };
 
-  const deleteCake = async (id) => {
+  // Fixed: Added : any
+  const deleteCake = async (id: any) => {
     if(confirm("Are you sure you want to delete this cake?")) {
       await fetch(`https://obsinan-api.vercel.app/cake-types/${id}`, { method: "DELETE" });
       loadCakes();
@@ -92,7 +94,7 @@ export default function PriceManager() {
 
   return (
     <div className="max-w-4xl mx-auto p-4">
-      <h1 className="text-3xl font-black text-cyan-400 mb-8 italic tracking-widest">MENU CONFIGURATION</h1>
+      <h1 className="text-3xl font-black text-cyan-400 mb-8 italic tracking-widest uppercase">Menu Configuration</h1>
 
       {/* Input Section */}
       <div className="bg-gray-900 p-8 rounded-[2rem] border border-white/5 mb-10 shadow-2xl">
@@ -102,7 +104,7 @@ export default function PriceManager() {
         </div>
         
         <div className="mb-6">
-          <label className="block text-gray-500 mb-2 text-xs uppercase font-bold ml-2">Upload Cake Master Image:</label>
+          <label className="block text-gray-500 mb-2 text-xs uppercase font-bold ml-2 text-white">Upload Cake Master Image:</label>
           <input type="file" onChange={handleFileChange} className="block w-full text-sm text-gray-400 file:mr-4 file:py-3 file:px-6 file:rounded-xl file:border-0 file:bg-gray-800 file:text-cyan-400 hover:file:bg-gray-700 cursor-pointer" />
         </div>
 
@@ -118,7 +120,7 @@ export default function PriceManager() {
           <div key={cake._id} className="bg-gray-900 p-4 rounded-[1.5rem] flex items-center gap-4 border border-white/5 hover:border-cyan-500/30 transition-all">
             <img src={cake.image_data} className="w-20 h-20 object-cover rounded-xl border-2 border-cyan-500/20" alt="cake" />
             <div className="flex-1">
-              <h3 className="font-bold text-lg leading-none mb-1">{cake.name}</h3>
+              <h3 className="font-bold text-lg leading-none mb-1 text-white uppercase">{cake.name}</h3>
               <p className="text-cyan-400 font-mono text-sm">{cake.price} ETB</p>
             </div>
             <div className="flex flex-col gap-2">
