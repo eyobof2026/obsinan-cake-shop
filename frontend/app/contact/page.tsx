@@ -62,15 +62,15 @@ export default function ContactPage() {
           <div className="bg-cyan-900/10 p-8 rounded-[2rem] border border-cyan-500/20">
             <h2 className="text-xl font-bold mb-4 text-cyan-400">{t[lang].call}</h2>
             <ul className="space-y-4 text-lg font-mono">
-              <li className="flex items-center gap-3"><span>📞</span> +251 911 22 33 44</li>
-              <li className="flex items-center gap-3"><span>📞</span> +251 922 33 44 55</li>
-              <li className="flex items-center gap-3"><span>📞</span> +251 900 11 22 33</li>
+              <li className="flex items-center gap-3"><span>📞</span> +251 966 88 09 43</li>
+              <li className="flex items-center gap-3"><span>📞</span> +251 949 39 02 51</li>
+              <li className="flex items-center gap-3"><span>📞</span> +251 998 46 56 21</li>
             </ul>
           </div>
 
           <div className="bg-blue-900/10 p-8 rounded-[2rem] border border-blue-500/20">
             <h2 className="text-xl font-bold mb-4 text-blue-400">{t[lang].social}</h2>
-            <a href="https://t.me/your_telegram" className="inline-block px-6 py-3 bg-blue-600 rounded-full font-bold hover:bg-blue-400 transition-all">@ObsinanCakes</a>
+            <a href="https://t.me/S_ynebcha" className="inline-block px-6 py-3 bg-blue-600 rounded-full font-bold hover:bg-blue-400 transition-all">@ObsinanCakes</a>
           </div>
         </div>
       </div>
